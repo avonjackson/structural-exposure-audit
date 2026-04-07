@@ -210,9 +210,9 @@
     }
 
     .primary-btn {
-      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      background: linear-gradient(135deg, #7b2cbf, #a855f7);
       color: #fff;
-      box-shadow: 0 16px 30px rgba(99,102,241,0.28);
+      box-shadow: 0 16px 30px rgba(123,44,191,0.34);
     }
 
     .secondary-btn {
@@ -321,6 +321,11 @@
       animation: floaty 2.5s ease-in-out infinite;
     }
 
+    .results-emoji.exposed-warning {
+      color: #d4a017;
+      text-shadow: 0 0 18px rgba(212,160,23,0.28);
+    }
+
     .result-total {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 56px;
@@ -403,6 +408,83 @@
       50% { transform: translateY(-6px); }
     }
 
+
+    .legal-link-row {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .legal-link-row a {
+      color: #b8b8c9;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .legal-link-row a:hover {
+      color: #ffffff;
+    }
+    .legal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 10, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .legal-modal {
+      width: min(760px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: rgba(13, 15, 24, 0.96);
+      border: 1px solid rgba(168, 85, 247, 0.28);
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      padding: 28px;
+    }
+    .legal-modal h2 {
+      margin: 0 0 14px;
+      color: #ffffff;
+    }
+    .legal-modal p, .legal-modal li {
+      color: #d1d5db;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .legal-modal ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+    .legal-close-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+    .results-notice {
+      margin: 0 0 18px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(168, 85, 247, 0.18);
+      background: rgba(17, 24, 39, 0.45);
+      text-align: left;
+    }
+    .results-notice strong {
+      color: #d8b4fe;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .cta-disclaimer {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: left;
+    }
+
     @media (max-width: 768px) {
       .page-shell { padding: 14px; }
       .panel-inner { padding: 18px; }
@@ -429,6 +511,37 @@
   </style>
 </head>
 <body>
+  <div id="entryGate" class="legal-overlay">
+    <div class="legal-modal">
+      <div class="tiny-label mb-2">Before You Begin</div>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">STRUCTURAL RESPONSIBILITY NOTICE</h2>
+      <p>This system is designed to identify structural dependencies within your income model.</p>
+      <p>It does not guarantee income, results, or specific outcomes.</p>
+      <p>Your results are shaped by decisions, execution, consistency, and factors outside the scope of this system.</p>
+      <p>By continuing, you acknowledge:</p>
+      <ul>
+        <li>This is a strategic and educational framework</li>
+        <li>No income or financial outcome is promised or implied</li>
+        <li>You are responsible for implementation and results</li>
+        <li>All sales are final due to the digital nature of this product</li>
+      </ul>
+      <div class="legal-close-row">
+        <button class="primary-btn" onclick="acceptGate()">I Understand — Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="legalOverlay" class="legal-overlay hidden">
+    <div class="legal-modal">
+      <div class="tiny-label mb-2">Legal</div>
+      <h2 id="legalTitle" class="font-heading text-2xl md:text-3xl font-bold">Disclaimer</h2>
+      <div id="legalBody"></div>
+      <div class="legal-close-row">
+        <button class="secondary-btn" onclick="closeLegal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <div id="app"></div>
 
   <script>
@@ -597,6 +710,32 @@
       }
     };
 
+    const legalContent = {
+      disclaimer: `
+        <p>The Structural Exposure Audit™, The Income Model Redesign™, Structural Decision Scan™, and related materials are educational and informational tools only.</p>
+        <p>They are designed to help identify structural patterns, dependencies, and decision points within an income model or business framework.</p>
+        <p>No income, earnings, financial outcome, or business result is guaranteed, promised, or implied.</p>
+        <p>Results vary based on individual execution, decisions, consistency, experience, and external factors beyond our control.</p>
+        <p>Nothing provided through these tools constitutes financial, legal, tax, or professional advice.</p>
+        <p>By using this site and its related products, you accept full responsibility for your actions, implementation, and results.</p>
+      `,
+      terms: `
+        <p>By accessing or purchasing these digital products, you agree to the terms stated here.</p>
+        <p>All content, frameworks, language, product structures, and materials are protected intellectual property and may not be copied, reproduced, distributed, modified, resold, or republished without written permission.</p>
+        <p>These products are provided for personal educational use only.</p>
+        <p>Due to the digital nature of these products, all sales are final. No refunds, returns, exchanges, or cancellations will be provided once access has been granted.</p>
+        <p>We reserve the right to update, modify, or improve content at any time without notice.</p>
+        <p>Continued use of this site or its products constitutes acceptance of these terms.</p>
+      `,
+      privacy: `
+        <p>We respect your privacy. Any information submitted through this site, including contact details you choose to provide, is used only for business, communication, delivery, and support purposes.</p>
+        <p>We do not sell or knowingly share your personal information with unrelated third parties except as necessary to operate this business, process transactions, deliver digital products, or comply with legal obligations.</p>
+        <p>Third-party platforms such as payment processors, email service providers, hosting providers, and analytics tools may collect or process data according to their own policies.</p>
+        <p>By using this site, you acknowledge that information may be processed through those platforms as part of normal business operations.</p>
+        <p>If you do not wish to submit personal information, do not use forms or purchase areas on this site.</p>
+      `
+    };
+
     let currentSection = 0;
     let currentQuestion = 0;
     let totalScore = 0;
@@ -691,6 +830,12 @@
 
                 <button class="primary-btn text-lg" onclick="startAudit()">${config.start_button_text}</button>
                 <div class="footer-note">Lower = more structured · Higher = more correction needed</div>
+                <div class="footer-note" style="margin-top:10px;font-size:12px;">This assessment identifies structural patterns — it does not predict outcomes or guarantee results.</div>
+                <div class="legal-link-row">
+                  <a href="#" onclick="openLegal('disclaimer'); return false;">Disclaimer</a>
+                  <a href="#" onclick="openLegal('terms'); return false;">Terms</a>
+                  <a href="#" onclick="openLegal('privacy'); return false;">Privacy</a>
+                </div>
               </div>
             </div>
           </div>
@@ -755,7 +900,7 @@
           <div class="panel fade-in relative" id="results-container">
             <div class="panel-inner">
               <div class="results-hero">
-                <div class="results-emoji">${result.emoji}</div>
+                <div class="results-emoji ${result.title === "EXPOSED" ? "exposed-warning" : ""}">${result.emoji}</div>
                 <div class="tiny-label mb-2">Audit Results</div>
                 <h1 class="font-heading text-4xl md:text-5xl font-bold mb-3">${result.title}</h1>
                 <div class="font-heading text-xl md:text-2xl font-bold mb-3" style="color:#a78bfa;">${result.message}</div>
@@ -781,23 +926,57 @@
                 </div>
               </div>
 
+              <div class="results-notice">
+                <strong>RESULT INTERPRETATION NOTICE</strong>
+                <div>Your score reflects structural patterns based on your responses. It is not a prediction of income, success, or failure. This system identifies where structure may need correction — not what outcomes you will achieve.</div>
+              </div>
+
               <div class="grid gap-4">
                 <button class="secondary-btn" onclick="restartAudit()">Retake Audit</button>
 
-                <a class="result-link" href="${config.next_step_url}" target="_blank" rel="noopener noreferrer">
-                  <div class="cta-card">
-                    <div class="tiny-label mb-2">Next Step</div>
-                    <div class="font-heading text-xl md:text-2xl font-bold mb-2">${result.cta}</div>
-                    <div class="muted">The audit shows the exposure. The next step fixes the structure.</div>
-                  </div>
-                </a>
+                <div>
+                  <div class="cta-disclaimer">This system provides structure — results depend on execution. No income is guaranteed.</div>
+                  <a class="result-link" href="${config.next_step_url}" target="_blank" rel="noopener noreferrer">
+                    <div class="cta-card">
+                      <div class="tiny-label mb-2">Next Step</div>
+                      <div class="font-heading text-xl md:text-2xl font-bold mb-2">${result.cta}</div>
+                      <div class="muted">The audit shows the exposure. The next step fixes the structure.</div>
+                    </div>
+                  </a>
+                </div>
               </div>
 
               <div class="footer-note">If your income depends on you, it isn’t built to run. It’s built to be carried.</div>
+              <div class="legal-link-row">
+                <a href="#" onclick="openLegal('disclaimer'); return false;">Disclaimer</a>
+                <a href="#" onclick="openLegal('terms'); return false;">Terms</a>
+                <a href="#" onclick="openLegal('privacy'); return false;">Privacy</a>
+              </div>
             </div>
           </div>
         </div>
       `;
+    }
+
+
+    function acceptGate() {
+      const gate = document.getElementById("entryGate");
+      if (gate) gate.classList.add("hidden");
+    }
+
+    function openLegal(type) {
+      const overlay = document.getElementById("legalOverlay");
+      const title = document.getElementById("legalTitle");
+      const body = document.getElementById("legalBody");
+      if (!overlay || !title || !body) return;
+      title.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+      body.innerHTML = legalContent[type];
+      overlay.classList.remove("hidden");
+    }
+
+    function closeLegal() {
+      const overlay = document.getElementById("legalOverlay");
+      if (overlay) overlay.classList.add("hidden");
     }
 
     function renderApp() {
