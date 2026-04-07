@@ -202,11 +202,12 @@
       width: 100%;
       border: none;
       border-radius: 18px;
-      padding: 16px 20px;
+      padding: 18px 20px;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
     }
 
     .primary-btn {
@@ -328,12 +329,14 @@
     }
 
     .cta-brand-line {
-      margin-top: 12px;
+      margin-top: 16px;
+      margin-bottom: 4px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.35;
       text-align: center;
+      padding: 0 10px;
       background: linear-gradient(135deg, #c084fc, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -373,12 +376,13 @@
     }
 
     .cta-card {
-      padding: 20px;
+      padding: 22px;
       border-radius: 22px;
       background: linear-gradient(135deg, rgba(50,16,83,0.96), rgba(88,28,135,0.92));
       border: 2px solid rgba(192,132,252,0.38);
       text-align: center;
       box-shadow: 0 16px 34px rgba(76,29,149,0.22);
+      margin-top: 8px;
     }
 
     .fade-in {
@@ -494,6 +498,12 @@
       display: block;
       margin-bottom: 6px;
     }
+    .results-support-line {
+      font-size: 14px;
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
     .cta-disclaimer {
       margin-top: 12px;
       font-size: 12px;
@@ -699,30 +709,30 @@
       stable: {
         title: "STRUCTURALLY STABLE",
         emoji: "✓",
-        message: "You don't need motivation.",
-        description: "Your income is not dependent on strain. But stable doesn't mean optimized. You may be plateaued.",
-        cta: "Fix the Structure with The Income Model Redesign™"
+        message: "Your structure is holding.",
+        description: "Lower = more structured. Your income is not being held together by strain, but stable does not mean optimized.",
+        cta: "Fix the Structure Now — Income Model Redesign™"
       },
       exposed: {
         title: "EXPOSED",
         emoji: "⚠",
-        message: "Your income functions.",
-        description: "But it would not survive your absence. You are the stabilizer.",
-        cta: "Fix the Structure with The Income Model Redesign™"
+        message: "Your structure has visible exposure.",
+        description: "Some parts are working, but the model still depends on you more than it should.",
+        cta: "Fix the Structure Now — Income Model Redesign™"
       },
       strain: {
         title: "STRAIN-BASED",
         emoji: "⚡",
-        message: "You have built something.",
-        description: "But it requires you to keep proving yourself. This is structural exposure.",
-        cta: "Fix the Structure with The Income Model Redesign™"
+        message: "You built it, but you are still carrying it.",
+        description: "Your model is functioning through effort, pressure, and manual dependence. Correction is needed.",
+        cta: "Fix the Structure Now — Income Model Redesign™"
       },
       survival: {
         title: "SURVIVAL-DEPENDENT",
         emoji: "🔥",
-        message: "Your income depends on endurance.",
-        description: "That is not scalable. And it is not sustainable.",
-        cta: "Fix the Structure with The Income Model Redesign™"
+        message: "Your model is being carried by survival behavior.",
+        description: "This is not a scale problem. It is a structure problem, and it needs correction before growth.",
+        cta: "Fix the Structure Now — Income Model Redesign™"
       }
     };
 
@@ -952,17 +962,22 @@
 
                 <div>
                   <div class="cta-disclaimer">This system provides structure — results depend on execution. No income is guaranteed.</div>
+
                   <a class="result-link" href="${config.next_step_url}" target="_blank" rel="noopener noreferrer">
                     <div class="cta-card">
-                      <div class="tiny-label mb-2">Next Step</div>
+                      <div class="tiny-label mb-2">Correction</div>
                       <div class="font-heading text-xl md:text-2xl font-bold mb-2">${result.cta}</div>
+                      <div class="muted results-support-line">The audit shows the exposure. This is the correction system.</div>
                     </div>
                   </a>
-                  <div class="cta-brand-line">If income depends on you, it is not built to run. It is built to be carried.</div>
+
+                  <div class="cta-brand-line">
+                    If income depends on you, it is not built to run. It is built to be carried.
+                  </div>
                 </div>
               </div>
 
-              <div class="footer-note">If your income depends on you, it isn’t built to run. It’s built to be carried.</div>
+              
               <div class="legal-link-row">
                 <a href="#" onclick="openLegal('disclaimer'); return false;">Disclaimer</a>
                 <a href="#" onclick="openLegal('terms'); return false;">Terms</a>
